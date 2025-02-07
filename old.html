@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:#1f1c2c;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        .content {
+            flex: 1;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .content {
+            flex: 1;
+        }
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3); /* Increase opacity here */
+            animation: moveIcons linear infinite;
+        }
+        @keyframes moveIcons {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #212529; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        }
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .light-mode {
+            background: linear-gradient(to right, #fff, #f1f1f1);
+            color: black;
+        }
+        .light-mode .floating-icons i {
+            color: rgba(0, 0, 0, 0.3); /* Increase opacity for light mode */
+        }
+    .artist-container {
+            margin: 80px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+      	    text-align: center;
+    }
+    /* Images */
+        .images{
+            height: 200px;
+            object-fit: cover;
+        }
+    /* Card styling */
+        .card:hover {
+            transform: scale(1.02);
+            transition: all 0.3s ease-in-out;
+        }
+        .card-title {
+            color: #343a40;
+            font-weight: bold;
+        }
+    /* Custom button styling */
+    .btn-read-more {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+    }
+
+    .btn-read-more:hover {
+      background-color: #0056b3;
+      color: #fff;
+            transform: scale(1.02);
+            transition: all 0.3s ease-in-out;
+    }
+        /* ✅ Footer Styling */
+        .footer {
+            background:#212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ✅ Larger Social Media Icons */
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 30px; /* Increased Size */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #007bff; /* Matches Submit Button */
+            transform: scale(1.2); /* Slight Zoom on Hover */
+        }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        /* ✅ Submit button - Changed to a Bluish Tone */
+        .btn-submit {
+            background-color: #007bff; /* Royal Blue */
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                const iconTypes = ['fa-music', 'fa-headphones', 'fa-play-circle', 'fa-guitar', 'fa-drum'];
+                const icon = document.createElement('i');
+                icon.className = `fa ${iconTypes[Math.floor(Math.random() * iconTypes.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${3 + Math.random() * 5}s`;
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+        </script>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <b><a class="navbar-brand" href="home.html">Diverse Melodies</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><b><a class="nav-link" href="home.html">Home</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="artist.html">Artists</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="about.html">About</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="contact.html">Contact</a></b></li>
+                </ul>
+            </div>
+            <button class="toggle-btn" id="toggleMode">
+                <i class="fa fa-sun" id="sunIcon" style="display: none;"></i>
+                <i class="fa fa-moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+
+  <!-- Artist Section -->
+  <div class="container artist-container my-5">
+        <h1 class="text-center">Old Songs!</h1>
+        <p class="text-center">These are some of the best Old songs!</p>
+    <div class="row gy-4">
+<div class="container mt-4">
+        <div class="row mt-4">
+    <!-- 1!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 1</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0HI3O9uCBWtu7B3boRpCaL?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 2!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 2</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6UeEm5XPsleVD85kNHCu1n?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 3!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 3</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0es02Rp0p0WpC4WRBDtM8P?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 4!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 4</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/54knXqMHVticNWFlTehYtf?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 5!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 5</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3MRREVp7Vwiivsny9bGd9O?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 6!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 6</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7rkkhMxGDlfpHtV9Y9bKsC?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 7!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 7</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/66pgL55KG00oTsxzTw7tBE?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 8!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 8</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4TimJMbd97nFu5wW9DJXQ9?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 9!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 9</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6yoTLFjdyTaCgJWXogjUp8?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+    <!-- 10!-->
+            <div class="col-md-6 mb-4">
+                <b><h5>Song 10</h5></b>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5ZKMBzpA8E2dDOmL06pK3J?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+        </div>
+      </div>
+    <!-- ✅ Footer with Social Media Links & Contact Info -->
+    <footer class="footer">
+        <div>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:contact@diversemelodies.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>📞 Phone: +91 92872 93365</p>
+        <p>&copy; 2025 Diverse Melodies. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }            const iframes = document.querySelectorAll('iframe[src*="open.spotify.com"]');
+            iframes.forEach(iframe => {
+                let src = iframe.src;
+                if (src.includes('theme=0')) {
+                    iframe.src = src.replace('theme=0', 'theme=1');
+                } else if (src.includes('theme=1')) {
+                    iframe.src = src.replace('theme=1', 'theme=0');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

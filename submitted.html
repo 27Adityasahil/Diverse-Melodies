@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:#1f1c2c;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .content {
+            flex: 1;
+        }
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3); /* Increase opacity here */
+            animation: moveIcons linear infinite;
+        }
+        @keyframes moveIcons {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #212529; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .light-mode {
+            background: linear-gradient(to right, #fff, #f1f1f1);
+            color: black;
+        }
+        .light-mode .floating-icons i {
+            color: rgba(0, 0, 0, 0.3); /* Increase opacity for light mode */
+        }
+    .btn-explore {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+
+    }
+
+    .btn-explore:hover {
+      background-color: #0056b3;
+      color: #fff;
+            transform: scale(1.02);
+            transition: all 0.3s ease-in-out;
+    }
+        /* ✅ Footer Styling */
+        .footer {
+            background:#212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ✅ Larger Social Media Icons */
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 30px; /* Increased Size */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #007bff; /* Matches Submit Button */
+            transform: scale(1.2); /* Slight Zoom on Hover */
+        }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        /* ✅ Contact form container */
+        .contact-container {
+            margin: 5px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        /* ✅ Submit button - Changed to a Bluish Tone */
+        .btn-read {
+            background-color: #007bff; /* Royal Blue */
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-read:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                const iconTypes = ['fa-music', 'fa-headphones', 'fa-play-circle', 'fa-guitar', 'fa-drum'];
+                const icon = document.createElement('i');
+                icon.className = `fa ${iconTypes[Math.floor(Math.random() * iconTypes.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${3 + Math.random() * 5}s`;
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+        </script>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <b><a class="navbar-brand" href="homepage.html">Diverse Melodies</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><b><a class="nav-link" href="home.html">Home</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="artist.html">Artists</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="about.html">About</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="contact.html">Contact</a></b></li>
+                </ul>
+            </div>
+            <button class="toggle-btn" id="toggleMode">
+                <i class="fa fa-sun" id="sunIcon" style="display: none;"></i>
+                <i class="fa fa-moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </nav>
+    <div>
+        <section class="hero">
+            <h1 >Review Submitted Successfully!</h1>
+        </section>
+</div>
+        
+    <div class="container contact-container text-center">
+        <h2>Thank You for Your Feedback! 🎶</h2>
+        <p>Your review has been submitted successfully! Your thoughts help us improve and keep the music experience alive. Stay tuned for more great tunes, and keep the vibe going! 🎵✨</p>
+        <a href="contact.html" class="btn btn-explore">Submit another one!</a>
+        <br>
+        <br>
+        <a href="artist.html" class="btn btn-explore">Some cool artists, You'd like!</a>
+        <br>
+        <br>
+        <a href="about.html" class="btn btn-explore">Read About Us!</a>
+        <br>
+        <br>
+        <a href="home.html" class="btn btn-explore">Explore more music</a>
+    </div>
+    <div>
+        <section class="hero">
+            <h1 > </h1>
+        </section>
+</div>
+
+            <!-- Name -->
+    <!-- ✅ Footer with Social Media Links & Contact Info -->
+    <footer class="footer">
+        <div>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:contact@diversemelodies.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>📞 Phone: +91 92872 93365</p>
+        <p>&copy; 2025 Diverse Melodies. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ JavaScript for Email Validation -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            var emailInput = document.getElementById("email");
+            var emailValue = emailInput.value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(emailValue)) {
+                emailInput.classList.add("is-invalid");
+                event.preventDefault(); // Prevent form submission
+            } else {
+                emailInput.classList.remove("is-invalid");
+            }
+        });
+    </script>
+    
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:#1f1c2c;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        .content {
+            flex: 1;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .content {
+            flex: 1;
+        }
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3); /* Increase opacity here */
+            animation: moveIcons linear infinite;
+        }
+        @keyframes moveIcons {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #212529; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .light-mode {
+            background: linear-gradient(to right, #fff, #f1f1f1);
+            color: black;
+        }
+        .light-mode .floating-icons i {
+            color: rgba(0, 0, 0, 0.3); /* Increase opacity for light mode */
+        }
+    .artist-container {
+            margin: 80px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+      	    text-align: center;
+    }
+    /* Images */
+        .images{
+            height: 200px;
+            object-fit: cover;
+        }
+    /* Card styling */
+        .card:hover {
+            transform: scale(1.02);
+            transition: all 1.3s ease-in-out;
+        }
+        .card-title {
+            color: #343a40;
+            font-weight: bold;
+        }
+    /* Custom button styling */
+    .btn-read-more {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+    }
+
+    .btn-read-more:hover {
+      background-color: #0056b3;
+      color: #fff;
+            transform: scale(1.02);
+            transition: all 0.3s ease-in-out;
+    }
+        /* ✅ Footer Styling */
+        .footer {
+            background:#212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ✅ Larger Social Media Icons */
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 30px; /* Increased Size */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #007bff; /* Matches Submit Button */
+            transform: scale(1.2); /* Slight Zoom on Hover */
+        }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        /* ✅ Submit button - Changed to a Bluish Tone */
+        .btn-submit {
+            background-color: #007bff; /* Royal Blue */
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                const iconTypes = ['fa-music', 'fa-headphones', 'fa-play-circle', 'fa-guitar', 'fa-drum'];
+                const icon = document.createElement('i');
+                icon.className = `fa ${iconTypes[Math.floor(Math.random() * iconTypes.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${3 + Math.random() * 5}s`;
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+        </script>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <b><a class="navbar-brand" href="/index.html">Diverse Melodies</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><b><a class="nav-link" href="/index.html">Home</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="artist.html">Artists</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="about.html">About</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="contact.html">Contact</a></b></li>
+                </ul>
+            </div>
+            <button class="toggle-btn" id="toggleMode">
+                <i class="fa fa-sun" id="sunIcon" style="display: none;"></i>
+                <i class="fa fa-moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+
+  <!-- Artist Section -->
+  <div class="container artist-container my-5">
+        <h2 class="text-center">Artists!</h2>
+        <p class="text-center">Here are some popoular Artists, Make sure you check them out!</p>
+    <div class="row gy-4">
+
+
+      <!-- Artist 4 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://i3.wp.com/www.thetalentedindian.com/wp-content/uploads/2022/07/Kishore-Kumar.jpeg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Kishore Kumar: The Evergreen Legend</h2>
+        <p class="text-center">Kishore Kumar, born 1929, was one of India's most iconic and versatile playback singers, leaving an indelible mark on Bollywood music. Known for his unique voice, Kishore’s career spanned over four decades, with songs that became timeless classics. His collaborations with legendary music directors like S.D. Burman, R.D. Burman, and Laxmikant-Pyarelal resulted in hit songs such as "Mere Sapno Ki Rani," "Roop Tera Mastana," "Khaike Paan Banaraswala," and "Chingari Koi Bhadke." Kishore's ability to effortlessly shift between playful, romantic..</p>
+         <a href="https://en.wikipedia.org/wiki/Kishore_Kumar" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+
+      <!-- Artist 5 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://images.firstpost.com/wp-content/uploads/2017/06/RD-Burman-YouTube-380.jpg?im=FitAndFill=(1200,675)" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">R.D. Burman: The Genius Composer of Bollywood</h2>
+        <p class="text-center">R.D. Burman (1939–1994), fondly called Pancham Da, revolutionized Bollywood music with his innovative fusion of Indian classical and western styles. His groundbreaking compositions like "Dum Maro Dum" and "Mehndi Laga Ke Rakhna" defined an era of Bollywood music. Collaborating with legends like Kishore Kumar and Asha Bhosle, Burman introduced a modern sound that influenced generations of music makers. His legacy remains unmatched in the world of Indian cinema music."</p>
+         <a href="https://en.wikipedia.org/wiki/R._D._Burman" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+
+      <!-- Artist 6 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://akm-img-a-in.tosshub.com/indiatoday/images/photogallery/201307/mohammed-rafi_660_073113024437.jpg?VersionId=PZ7nJo1KbbJhQGFR0B7zV1aEPJMWv3d3" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Mohammad Rafi: The Voice of a Generation</h2>
+        <p class="text-center">Mohammad Rafi (1924–1980) was one of the most beloved and versatile playback singers in Indian cinema. Known for his melodic voice, Rafi lent his vocals to countless Bollywood hits across genres. Songs like "Tere Bina Zindagi Se," "Aaja Aaja Main Hoon Pyar Tera," and "Yeh Reshmi Zulfein" showcased his unmatched vocal range and emotional depth. Rafi's contributions to Indian music earned him numerous accolades, and his timeless songs continue to evoke deep emotion in listeners worldwide.</p>
+         <a href="https://en.wikipedia.org/wiki/Mohammed_Rafi" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 3 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://wallpapercave.com/wp/wp8207091.jpg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Arijit Singh: Soulful Voice of Bollywood</h2>
+        <p class="text-center">Arijit Singh, born in 1987, is one of India's most celebrated playback singers. His breakthrough came with "Tum Hi Ho" (Aashiqui 2, 2013), which made him a household name. Known for his soulful voice and deep emotional connection, he has delivered countless hits like "Channa Mereya," "Gerua," and "Kesariya." His versatility spans romantic ballads, heartbreak songs, and upbeat tracks. Arijit has won multiple Filmfare Awards and remains Bollywood’s most sought-after singer. Despite his immense fame, he stays humble and private, focusing on music that resonates with audiences across generations.</p>
+         <a href="https://en.wikipedia.org/wiki/Arijit_Singh" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 12 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://static.tnn.in/photo/msid-113231460,width-1280,height-720/113231460.jpg?quality=100" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Diljit Dosanjh: The Multifaceted Star</h2>
+        <p class="text-center">Diljit Dosanjh, born in 1984, is an Indian singer, actor, and producer who has made a mark in both the Punjabi music and Bollywood industries. He gained fame with hit songs like "Pagal," "Do You Know," and "Laembadgini." Diljit’s music blends traditional Punjabi sounds with contemporary elements, earning him a loyal following. In addition to his musical success, he has starred in popular Punjabi films like "Jatt & Juliet" and Bollywood films such as "Udta Punjab" and "Good Newwz.", He is Known for his charm and versatility, Diljit has received multiple awards, solidifying his position in the entertainment industry.</p>
+         <a href="https://en.wikipedia.org/wiki/Shreya_Ghoshal" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 7 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://images.hindustantimes.com/img/2021/03/02/1600x900/bdbfdfae-7ac3-11eb-b253-07de00f15483_1614696687267.jpg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Armaan Malik: The Prince of romance</h2>
+        <p class="text-center">Armaan Malik, born in 1995, is a popular Indian playback singer known for his melodious voice and versatile singing style. He gained fame at a young age with his debut in the film "Taare Zameen Par" (2007), but his big break came with "Main Hoon Hero Tera" from Hero (2015). Armaan has since delivered numerous chart-topping tracks like "Bol Do Na Zara," "Kar Gayi Chull," and "Pehli Dafa." With his soulful renditions across Bollywood and international music, he has won several awards, and his strong presence on social media has earned him a global fanbase, making him one of the leading young voices in the industry.</p>
+         <a href="https://en.wikipedia.org/wiki/Armaan_Malik" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+
+      <!-- Artist 8 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://www.theindianpanorama.news/wp-content/uploads/2022/10/Shreya-ghoshal-1024x576.jpg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Shreya Ghosal: The Melodious Queen</h2>
+        <p class="text-center">Shreya Ghosal, born in 1984, is a renowned Indian playback singer known for her sweet, versatile voice and exceptional vocal range. She gained fame after winning Sa Re Ga Ma Pa in 1996 and made her Bollywood debut with Devdas (2002), where her song "Bairagi" became a massive hit. Over the years, Shreya has sung iconic tracks like "Tum Hi Tum," "Sun Raha Hai," and "Deewani Mastani." Her emotional depth and musical versatility across multiple languages have earned her numerous accolades, including National Film Awards and Filmfare Awards, making her one of India’s top playback singers.</p>
+         <a href="https://en.wikipedia.org/wiki/Shreya_Ghoshal" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 1 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM8b0Tv8Yd4TceVLo7gXmfmmXahnU55MrsJw&s" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">The Weeknd: A Modern R&B Icon</h2>
+        <p class="text-center">The Weeknd, born Abel Tesfaye in 1990, is a Canadian singer, songwriter, and record producer known for his moody, atmospheric R&B sound. He gained attention with his 2011 mixtapes, leading to mainstream success with albums like Beauty Behind the Madness (2015) and Starboy (2016). Hits like "Blinding Lights" and "Save Your Tears" solidified his global status. His 2021 Super Bowl halftime performance showcased his artistry, blending dark aesthetics with mainstream appeal. With multiple Grammy wins and record-breaking streams, The Weeknd continues to shape modern music.</p>
+         <a href="https://en.wikipedia.org/wiki/The_Weeknd" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 2 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://www.baltana.com/files/wallpapers-18/Eminem-HD-Background-Wallpaper-44954.jpg" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Marshall “Shady” The Lyric King</h2>
+        <p class="text-center">Eminem, born Marshall Bruce Mathers III in 1972, is one of the most influential rappers of all time. Rising from Detroit’s underground rap scene, he gained fame with The Slim Shady LP (1999), showcasing his sharp lyricism and controversial themes. His albums The Marshall Mathers LP and The Eminem Show cemented his legacy with hits like "Lose Yourself" and "Stan." Known for his rapid-fire flow and storytelling, he has won multiple Grammys and an Oscar. Despite industry shifts, Eminem remains a dominant force with masterful wordplay and unmatched technical skill.</p>
+         <a href="https://en.wikipedia.org/wiki/Eminem" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 9 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://c4.wallpaperflare.com/wallpaper/516/658/326/taylor-swift-women-singer-celebrity-wallpaper-preview.jpg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Taylor Swift: The Pop Phenomenon</h2>
+        <p class="text-center">Taylor Swift, born in 1989, is a globally recognized American singer-songwriter known for her storytelling through music. Starting her career in country music, she transitioned to pop with her album 1989 (2014). With hits like "Love Story," "Shake It Off," and "Blank Space," Taylor has consistently topped charts, earning numerous Grammy Awards. Her albums Fearless, Red, and Reputation showcased her evolution as an artist, blending pop, country, and indie styles. Taylor is celebrated for her deeply personal lyrics, connecting with fans worldwide.</p>
+         <a href="https://en.wikipedia.org/wiki/Taylor_Swift" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+
+      <!-- Artist 10 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://www.xtrafondos.com/wallpapers/sabrina-carpenter-maquillaje-dramatico-3879.jpg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Sabrina Carpenter: A Rising Star in Music</h2>
+        <p class="text-center">Sabrina Carpenter, born in 1999, is an American singer, songwriter, and actress who rose to fame through her role in the Disney Channel series Girl Meets World. She made her music debut with Eyes Wide Open (2015) and has since released hits like "Thumbs," "Why," and "Skin." Known for her powerful vocals and relatable lyrics, Sabrina blends pop with indie influences, tackling themes of self-empowerment, love, and personal growth. With a strong fanbase, Sabrina continues to shine in both music and acting, making her mark as a multi-talented artist in the entertainment industry.</p>
+         <a href="https://en.wikipedia.org/wiki/Sabrina_Carpenter" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+      <!-- Artist 11 -->
+      <div class="col-md-4">
+        <div class="card artist-card">
+          <img class="images" src="https://4kwallpapers.com/images/wallpapers/jennie-blackpink-portrait-k-pop-singer-korean-singers-2021-3840x2160-6507.jpg" class="card-img-top" alt="Coffee Beans">
+        </div>
+ 	<div>
+        <h2 class="text-center">Jennie Kim: The Multi-Talented Superstar</h2>
+        <p class="text-center">Jennie Kim, known as Jennie, is a South Korean singer, rapper, and member of the globally popular K-pop group BLACKPINK, formed by YG Entertainment. Born in 1996, Jennie debuted in 2016 as the group's main rapper and lead vocalist. Known for her powerful stage presence and unique vocal tone, she has contributed to hits like "DDU-DU DDU-DU" and "Kill This Love." In 2018, Jennie launched her solo career with the successful single "SOLO." Besides her music, Jennie is a fashion icon, frequently collaborating with luxury brands. She has become one of the most influential figures.</p>
+         <a href="https://en.wikipedia.org/wiki/Jennie_(singer)" class="btn btn-read-more">Read More</a>
+	<br>
+	<br>
+	</div>
+      </div>
+
+        </div>
+      </div>
+    <!-- ✅ Footer with Social Media Links & Contact Info -->
+    <footer class="footer">
+        <div>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:contact@diversemelodies.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>📞 Phone: +91 92872 93365</p>
+        <p>&copy; 2025 Diverse Melodies. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }
+        });
+    </script>
+</body>
+</html>

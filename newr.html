@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:#1f1c2c;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        .content {
+            flex: 1;
+        }
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3); /* Increase opacity here */
+            animation: moveIcons linear infinite;
+        }
+        @keyframes moveIcons {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #212529; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        }
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .light-mode {
+            background: linear-gradient(to right, #fff, #f1f1f1);
+            color: black;
+        }
+        .light-mode .floating-icons i {
+            color: rgba(0, 0, 0, 0.3); /* Increase opacity for light mode */
+        }
+    .artist-container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .playlist-title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .song-card {
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .song-card img {
+      border-radius: 8px 8px 0 0;
+      width: 100%;
+    }
+    .song-info {
+      padding: 15px;
+    }
+    .song-info h5 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .song-info p {
+      color: gray;
+    }
+    .song-info button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .song-info button:hover {
+      background-color: #0056b3;
+    }
+
+        /* ✅ Footer Styling */
+        .footer {
+            background:#212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ✅ Larger Social Media Icons */
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 30px; /* Increased Size */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #007bff; /* Matches Submit Button */
+            transform: scale(1.2); /* Slight Zoom on Hover */
+        }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                const iconTypes = ['fa-music', 'fa-headphones', 'fa-play-circle', 'fa-guitar', 'fa-drum'];
+                const icon = document.createElement('i');
+                icon.className = `fa ${iconTypes[Math.floor(Math.random() * iconTypes.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${3 + Math.random() * 5}s`;
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+        </script>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <b><a class="navbar-brand" href="home.html">Diverse Melodies</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><b><a class="nav-link" href="home.html">Home</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="artist.html">Artists</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="about.html">About</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="contact.html">Contact</a></b></li>
+                </ul>
+            </div>
+            <button class="toggle-btn" id="toggleMode">
+                <i class="fa fa-sun" id="sunIcon" style="display: none;"></i>
+                <i class="fa fa-moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </nav>
+  <div class="container artist-container my-5">
+        <h1 class="text-center">New Releases!</h1>
+        <p class="text-center">These are some Newly released songs!</p>
+
+      <div class="row">
+        <!-- Song 1 -->
+        <div class="col-md-4">
+          <div class="card song-card">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.Sxf3QMBZfK9UYwMjXO6j_gHaHa&pid=Api&P=0&h=180" height=300px width=200px " Song Cover 1">
+            <div class="song-info">
+              <h5>Uyi Amma</h5>
+              <p>Artist:Madhumanti Bagchi </p>
+              <a href="https://open.spotify.com/track/2nP1wLRh85mo5Wdj4RQldp?si=14720d45fcc042e1"class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+            </div>
+          </div>
+        </div>
+        <!-- Song 2 -->
+        <div class="col-md-4">
+          <div class="card song-card">
+            <img src="https://tse2.mm.bing.net/th?id=OIF.duL7mYfgjyQ5jq1qBYPswg&pid=Api&P=0&h=180" height="300px width=200px" alt="Song Cover 2">
+            <div class="song-info">
+              <h5>Tu Hain Toh Main Hoon</h5>
+              <p>Artist:Arijit Singh</p>
+              <a href="https://open.spotify.com/track/4Lo6I7kkHWgAVRmdILLhig?si=c2d2e74304a44a02"class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+            </div>
+          </div>
+        </div>
+        <!-- Song 3 -->
+        <div class="col-md-4">
+          <div class="card song-card">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.KAy7__j_SiaDY9XE2hpkCQHaHa&pid=Api&P=0&h=180"height=300px width=200px alt="Song Cover 3">
+            <div class="song-info">
+              <h5>Ajeeb-O-Gareeb</h5>
+              <p>Artist: Arijit Singh,Hansika Pareek</p>
+              <a href="https://open.spotify.com/track/5iraRSCIEJLM3K51bqRjMg?si=e63a666c36214bb7"class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+            </div>
+          </div>
+        </div>
+        <!-- Song 4 -->
+        <div class="col-md-4">
+          <div class="card song-card">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.khJRidPRd-xsHlnDHUhPegHaEK&pid=Api&P=0&h=180" height=300px width=200px alt="Song Cover 4">
+            <div class="song-info">
+              <h5>Rang</h5>
+              <p>Artist:Satinder Sartaaj,Zarah S Khan</p>
+              <a href="https://open.spotify.com/track/0EUrRFThmOODM86lqibGmL?si=dfb3bf85ec904c30"class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+            </div>
+          </div>
+        </div>
+        <!-- Song 5 -->
+        <div class="col-md-4">
+          <div class="card song-card">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.8acIEGcft9wOPZbW8uwf5ADIDI&pid=Api&P=0&h=180" height=300px width=200px alt="Song Cover 5">
+            <div class="song-info">
+              <h5>Kya Meri Yaad Aati hai</h5>
+              <p>Artist:Vishal Mishra </p>
+              <a href="https://open.spotify.com/track/2hPMMkjM0eSDgsNFfIVSwf?si=cbfff743f9314e54"class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+            </div>
+           </div>
+        </div>
+        <!-- Song 6 -->
+        <div class="col-md-4">
+          <div class="card song-card">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.7OYwLxpoQhs_3x8hVKdYrQAAAA&pid=Api&P=0&h=180" height=300px width=200px alt="Song Cover 6">
+            <div class="song-info">
+              <h5>Birangay</h5>
+              <p>Artist:Meenal Jain,Amitabh Bhattacharya </p>
+              <a href="https://open.spotify.com/track/5H5u7mZ7S20HsR45s4d5VZ?si=f64f987aefe34189"class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+    <!-- ✅ Footer with Social Media Links & Contact Info -->
+    <footer class="footer">
+        <div>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:contact@diversemelodies.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>📞 Phone: +91 92872 93365</p>
+        <p>&copy; 2025 Diverse Melodies. All Rights Reserved.</p>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <!-- ✅ JavaScript for Email Validation -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            var emailInput = document.getElementById("email");
+            var emailValue = emailInput.value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(emailValue)) {
+                emailInput.classList.add("is-invalid");
+                event.preventDefault(); // Prevent form submission
+            } else {
+                emailInput.classList.remove("is-invalid");
+            }
+        });
+    </script>
+    
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }
+        });
+    </script>
+</body>
+</html>

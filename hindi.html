@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:#1f1c2c;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        .content {
+            flex: 1;
+        }
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3); /* Increase opacity here */
+            animation: moveIcons linear infinite;
+        }
+        @keyframes moveIcons {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #212529; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        }
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .light-mode {
+            background: linear-gradient(to right, #fff, #f1f1f1);
+            color: black;
+        }
+        .light-mode .floating-icons i {
+            color: rgba(0, 0, 0, 0.3); /* Increase opacity for light mode */
+        }
+    .artist-container {
+            margin: 80px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+      	    text-align: center;
+    }
+
+        /* ✅ Footer Styling */
+        .footer {
+            background:#212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ✅ Larger Social Media Icons */
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 30px; /* Increased Size */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #007bff; /* Matches Submit Button */
+            transform: scale(1.2); /* Slight Zoom on Hover */
+        }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        /* ✅ Submit button - Changed to a Bluish Tone */
+        .btn-submit {
+            background-color: #007bff; /* Royal Blue */
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                const iconTypes = ['fa-music', 'fa-headphones', 'fa-play-circle', 'fa-guitar', 'fa-drum'];
+                const icon = document.createElement('i');
+                icon.className = `fa ${iconTypes[Math.floor(Math.random() * iconTypes.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${3 + Math.random() * 5}s`;
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+        </script>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <b><a class="navbar-brand" href="home.html">Diverse Melodies</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><b><a class="nav-link" href="home.html">Home</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="artist.html">Artists</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="about.html">About</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="contact.html">Contact</a></b></li>
+                </ul>
+            </div>
+            <button class="toggle-btn" id="toggleMode">
+                <i class="fa fa-sun" id="sunIcon" style="display: none;"></i>
+                <i class="fa fa-moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </nav>
+  <div class="container artist-container my-5">
+        <h1 class="text-center">Hindi Songs!</h1>
+        <p class="text-center">These are some popoular Songs!</p>
+    <div class="row gy-4">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/839/Mismatched-Season-3-Soundtrack-from-the-Netflix-Series-Hindi-2024-20241217204803-500x500.jpg" alt="Ishq hai"  style="width: 100%; border-radius: 10px;">
+            <h2>Ishq hai</h2>
+            <p>Artist:Anurag Saiki Raj Shekhar, Amarabha Banerjee</p>
+            <a href="https://open.spotify.com/track/3vCzLB6kS2lGcIpm1OOUsy?si=3d73ff7c3d3c4ec4" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/915/Raanjhan-From-Do-Patti-Hindi-2024-20241004153945-500x500.jpg" alt="Raanjhan"  style="width: 100%; border-radius: 10px;">
+            <h2>Raanjhan</h2>
+            <p>Artist:Sachet-Parampara </p>
+            <a href="https://open.spotify.com/track/4vHRQnzGcKEtqsLH70tAms?si=0042a21b851d4aaf" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf5lXLa09jTQ9X5ORvvij6B5Ateox97-LhCQ&s" alt="Dekha tenu"  style="width: 100%; border-radius: 10px;">
+            <h2>Dekha tenu</h2>
+            <p>Artist:Mohammad Faiz Jaanu </p>
+            <a href="https://open.spotify.com/track/34Fh4HXZmnuBdtgejWUZg2?si=49d89a7963194e1c" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCoLUePHJuJNDUUOEMZaT4pqzUSgJ4sjEbDQ&s" alt="Ahishta Ahishta"  style="width: 100%; border-radius: 10px;">
+            <h2>Ahishta Ahishta</h2>
+            <p>Artist:Kazinama, Musarrat Nazir</p>
+            <a href="https://open.spotify.com/track/1LFNOKVaFVBFCiLwz8Ay4O?si=378857ab50b24852" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://i.scdn.co/image/ab67616d0000b27356d722a090715da44d3c9c80" alt="Sajna ve"  style="width: 100%; border-radius: 10px;">
+            <h2>Sajna ve</h2>
+            <p>Artist:Ravator, Aditya Rikhari </p>
+            <a href="https://open.spotify.com/track/5uVdnHJtxvpy3BSmoxV5Kn?si=71c4cd303d8f4593" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://pagalfree.com/images/128Jaana%20Samjho%20Na%20-%20Bhool%20Bhulaiyaa%203%20128%20Kbps.jpg" alt="Jana samjho na"  style="width: 100%; border-radius: 10px;">
+            <h2>Jana samjho na</h2>
+            <p>Artist:Aditya rikhari, Tulsi kumar</p>
+            <a href="https://open.spotify.com/track/1PALLCSlHwAI4upY3sMg8u?si=7ec8a25c48384037" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_OlpUrsaIzMgLe-tkbds1vlGokB4T-T5lHg&s" alt="Sahiba"  style="width: 100%; border-radius: 10px;">
+            <h2>Sahiba</h2>
+            <p>Artist:Jasleen Royal, Stebin ben, Vijay Deverakonda</p>
+            <a href="https://open.spotify.com/track/4ulroyDK6rN73nVkCkWhur?si=930e38aa0d7d4f7a" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/401/Jo-Tum-Mere-Ho-Hindi-2024-20240731053953-500x500.jpg" alt="Jo tum mere ho"  style="width: 100%; border-radius: 10px;">
+            <h2>Jo tum mere ho</h2>
+            <p>Artist:Anuv Jain </p>
+            <a href="https://open.spotify.com/track/0eCajpR75pDW0r64U6hP2x?si=0d948079382344ce" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84a27b6a5504e2415688d69628" alt="Sajni"  style="width: 100%; border-radius: 10px;">
+            <h2>Sajni</h2>
+            <p>Artist:Ram Sampath, Arijit singh, Prashant</p>
+            <a href="https://open.spotify.com/track/5zCnGtCl5Ac5zlFHXaZmhy?si=85a825d7d0214ebb" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/666/Tu-Hain-Toh-Main-Hoon-From-Sky-Force-Hindi-2025-20250122163120-500x500.jpg" alt="Tu hai toh mai ho"  style="width: 100%; border-radius: 10px;">
+            <h2>Tu hai toh mai ho</h2>
+            <p>Artist:Tanishk Bagchi, Arijit Singh </p>
+            <a href="https://open.spotify.com/track/4Lo6I7kkHWgAVRmdILLhig?si=1c3b69d0c8e94108" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>  
+    </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+        </div>
+      </div>
+
+    <!-- ✅ Footer with Social Media Links & Contact Info -->
+    <footer class="footer">
+        <div>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:contact@diversemelodies.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>📞 Phone: +91 92872 93365</p>
+        <p>&copy; 2025 Diverse Melodies. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ JavaScript for Email Validation -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            var emailInput = document.getElementById("email");
+            var emailValue = emailInput.value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(emailValue)) {
+                emailInput.classList.add("is-invalid");
+                event.preventDefault(); // Prevent form submission
+            } else {
+                emailInput.classList.remove("is-invalid");
+            }
+        });
+    </script>
+    
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diverse Melodies</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20221224/pngtree-blue-musical-notes-background-image_1530362.jpg");
+        background-repeat: repeat-y;
+        background-size: cover;
+      }
+
+      /* Navigation */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(152, 177, 252, 0.3);
+        height: 70px;
+        padding: 0 1em;
+        position: relative;
+      }
+
+      .nav-sec {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .left-sec-nav {
+        font-family: Poppins;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #c903f6;
+        cursor: pointer;
+      }
+
+      .left-sec-nav:hover {
+        color: brown;
+      }
+
+      .right-sec-nav ul {
+        display: flex;
+        gap: 1em;
+      }
+
+      .right-sec-nav ul li {
+        list-style: none;
+      }
+
+      .nav-links {
+        text-decoration: none;
+        color: rgb(0, 75, 251);
+        font-size: 1.2rem;
+      }
+
+      .nav-links:hover {
+        text-decoration: underline;
+      }
+
+      /* Hamburger Menu for Mobile */
+      .hamburger {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(152, 177, 252, 0.9);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 200px;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .mobile-menu a {
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        display: block;
+      }
+
+      .mobile-menu a:hover {
+        background-color: #94dbff;
+      }
+
+      /* Music Section */
+      .music-section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      .left-sec {
+        width: 40%;
+        background-color: #20182c;
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+      }
+      select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        border: none;
+      }
+
+      .selected {
+        width: 100%;
+        background-color: #ffffff;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .music-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+      }
+      .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 80px;
+        border-radius: 12px;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+        text-align: center;
+      }
+      .music-card a {
+        text-decoration: none;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 8px rgba(223, 36, 36, 0.3);
+      }
+      #in-music {
+        background-color: #4caf50;
+      }
+      #in-podcast {
+        background-color: #e91e63;
+      }
+      #made-for-you {
+        background-color: #00796b;
+      }
+      #new-releases {
+        background-color: #8bc34a;
+      }
+      #hindi {
+        background-color: #2196f3;
+      }
+      #punjabi {
+        background-color: #e91e63;
+      }
+      #tamil {
+        background-color: #3f51b5;
+      }
+      #telugu {
+        background-color: #ff9800;
+      }
+      #english {
+        background-color: #1a237e;
+      }
+      #podcast-new-releases {
+        background-color: #9c27b0;
+      }
+      #hip-hop {
+        background-color: #00bcd4;
+      }
+      #lofi-beats {
+        background-color: #673ab7;
+      }
+      .right-sec {
+        margin: 2% 0;
+        width: 40%;
+      }
+
+      iframe {
+        width: 560px;
+        height: 315px;
+        border: 8px solid black;
+        border-radius: 12px;
+      }
+      @media (max-width: 768px) {
+        .right-sec-nav ul {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .music-section {
+          flex-direction: column;
+          align-items: center;
+        }
+        .left-sec {
+          width: 85%;
+        }
+
+        .right-sec {
+          width: 100%;
+          text-align: center;
+        }
+
+        iframe {
+          width: 90%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-sec">
+        <div class="left-sec-nav">Diverse Melodies</div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+      </div>
+      <div class="right-sec-nav">
+        <ul>
+          <li><a class="nav-links" href="/index.html">Home</a></li>
+          <li><a class="nav-links" href="/about.html">About</a></li>
+          <li><a class="nav-links" href="/artist.html">Artist</a></li>
+          <li><a class="nav-links" href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/artist.html">Artist</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </nav>
+    <div class="music-section">
+      <div class="left-sec">
+        <select
+          class="selected"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+          onchange="change(this.value)"
+        >
+          <option selected>What are you upto?</option>
+          <option
+            value="https://open.spotify.com/playlist/4F9XjRMCeyxlmysK16V85W?si=OJJZr71DRbOk4iPFYv3i7g"
+          >
+            Party
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/07UHFyiPyJBz3AN4tqbnba?si=LDUsVM7DQrmut3rUvr_RAg%0A"
+          >
+            Study
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/5FI8rn340FgsOB7B8Ic0DZ?si=YELAlfMyR0mN-WV9XbMJaw"
+          >
+            sleep
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/58ZE3qcMwLKMyCjAIbZIc1?si=pi2yHF_gQY6tgj5vT18m_w"
+          >
+            Exercise
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/7jqITFzz82k5mCgjrWcQeW"
+          >
+            Yoga
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/7gAbiIKV38Lfs3HMbVdFun"
+          >
+            Gaming
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/1dD2RAirtwoQQwno1mglZH"
+          >
+            chill & relax
+          </option>
+          <option
+            value="https://open.spotify.com/playlist/3IpDoXyKOPgxJvUJYsagyM"
+          >
+            trip
+          </option>
+        </select>
+        <div class="music-card">
+          <a href="/2024.html" target="_blank"><div class="card" id="in-music">2024 in Music</div></a>
+          <a href="/podcast.html" target="_blank"><div class="card" id="in-podcast">2024 in Podcasts</div></a>
+          <a href="/made.html" target="_blank"><div class="card" id="made-for-you">Made For You</div></a>
+          <a href="/newr.html" target="_blank"> <div class="card" id="new-releases">New Releases</div></a>
+          <a href="/hindi.html" target="_blank"><div class="card" id="hindi">Hindi</div></a>
+          <a href="/punjabi.html" target="_blank"><div class="card" id="punjabi">Punjabi</div></a>
+          <a href="/tamil.html" target="_blank"><div class="card" id="tamil">Tamil</div></a>
+          <a href="/telugu song/index.html" target="_blank">
+            <a href="/telugu.html" target="_blank"><div class="card" id="telugu">Telugu</div>
+          </a>
+          <a href="/English.html" target="_blank">
+            <div class="card" id="english">English</div>
+          </a>
+          <a href="/old.html" target="_blank"><div class="card" id="podcast-new-releases">Old songs</div></a>
+          <a href="/hiphop.html" target="_blank"><div class="card" id="hip-hop">Hip Hop</div></a>
+          <a href="/indie.html" target="_blank"><div class="card" id="lofi-beats">Indie</div></a>
+        </div>
+      </div>
+      <div class="right-sec">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/oGZ-eAQSpUM?si=BT4_F8gHPzxyOtlj"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <script>
+      function toggleMenu() {
+        let menu = document.getElementById("mobileMenu");
+        if (menu.style.display === "flex") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "flex";
+        }
+      }
+
+      function change(url) {
+        if (url) {
+          window.open(url, "_blank");
+        }
+      }
+    </script>
+  </body>
+</html>

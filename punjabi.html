@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:#1f1c2c;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+        .content {
+            flex: 1;
+        }
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .floating-icons i {
+            position: absolute;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3); /* Increase opacity here */
+            animation: moveIcons linear infinite;
+        }
+        @keyframes moveIcons {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #212529; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        }
+        .toggle-btn {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .light-mode {
+            background: linear-gradient(to right, #fff, #f1f1f1);
+            color: black;
+        }
+        .light-mode .floating-icons i {
+            color: rgba(0, 0, 0, 0.3); /* Increase opacity for light mode */
+        }
+    .artist-container {
+            margin: 80px auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+      	    text-align: center;
+    }
+
+        /* ✅ Footer Styling */
+        .footer {
+            background:#212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* ✅ Larger Social Media Icons */
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 30px; /* Increased Size */
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #007bff; /* Matches Submit Button */
+            transform: scale(1.2); /* Slight Zoom on Hover */
+        }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        /* ✅ Submit button - Changed to a Bluish Tone */
+        .btn-submit {
+            background-color: #007bff; /* Royal Blue */
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3; /* Darker Blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                const iconTypes = ['fa-music', 'fa-headphones', 'fa-play-circle', 'fa-guitar', 'fa-drum'];
+                const icon = document.createElement('i');
+                icon.className = `fa ${iconTypes[Math.floor(Math.random() * iconTypes.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${3 + Math.random() * 5}s`;
+                document.querySelector('.floating-icons').appendChild(icon);
+            }
+        </script>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <b><a class="navbar-brand" href="home.html">Diverse Melodies</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><b><a class="nav-link" href="home.html">Home</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="artist.html">Artists</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="about.html">About</a></b></li>
+                    <li class="nav-item"><b><a class="nav-link" href="contact.html">Contact</a></b></li>
+                </ul>
+            </div>
+            <button class="toggle-btn" id="toggleMode">
+                <i class="fa fa-sun" id="sunIcon" style="display: none;"></i>
+                <i class="fa fa-moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </nav>
+  <div class="container artist-container my-5">
+        <h1 class="text-center">Punjabi Songs!</h1>
+        <p class="text-center">Here are some popular Songs!</p>
+    <div class="row gy-4">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://i.ytimg.com/vi/IAvw60x0Kn4/sddefault.jpg" alt="YOU AND ME"  style="width: 100%; border-radius: 10px;">
+            <h2>You and me</h2>
+            <p>Artist:Shubh</p>
+            <a href="https://open.spotify.com/track/4thOONDx78zsY8sHGfU1M2?si=e5fff8c9eabe4103" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_fDplNEgB5QDSPyHwdY_2iiT4L9FKm7EZ1A&s" alt="Tauba Tauba"  style="width: 100%; border-radius: 10px;">
+            <h2>Tauba Tauba</h2>
+            <p>Artist:Karan Ajula </p>
+            <a href="https://open.spotify.com/track/16kiQQ4BoLHDyj5W2fkfNK?si=b8c2228915314e6b" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbN7Xxh2c4hkMb5VXUHovj4zr_lpM4mM_hjw&s" alt="Apa fer milaange"  style="width: 100%; border-radius: 10px;">
+            <h2>Apa fer milaange</h2>
+            <p>Artist:Savi Kahlon, The Masterz </p>
+            <a href="https://open.spotify.com/track/6JP8RinqsLkPiBi7B0VLGJ?si=c6a4e45f9b06483a" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/276/Ghost-English-2023-20231028142825-500x500.jpg" alt="Kinni Kinni"  style="width: 100%; border-radius: 10px;">
+            <h2>Kinni Kinni</h2>
+            <p>Artist:Diljit Dosanjh, Thiarajxtt</p>
+            <a href="https://open.spotify.com/track/3F3ZuXYFXGM1V6pk3b3zmi?si=0d918bcc6aa04d18" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/245/Hass-Hass-English-2023-20231026170517-500x500.jpg" alt="Hass Hass"  style="width: 100%; border-radius: 10px;">
+            <h2>Hass Hass</h2>
+            <p>Artist:Diljit Dosanjh, Sia, Greg kurstin</p>
+            <a href="https://open.spotify.com/track/72vuBPMhwFNlSYpTSf6fVD?si=9fd1e92aa874450a" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://i.ytimg.com/vi/0pWsCiBvLOk/sddefault.jpg" alt="One Love"  style="width: 100%; border-radius: 10px;">
+            <h2>One love</h2>
+            <p>Artist:Shubh </p>
+            <a href="https://open.spotify.com/track/5ZLkihi6DVsHwDL3B8ym1t?si=b6082e202dd14842" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/781/Kalaastar-From-Honey-3-0-Hindi-2023-20231010140404-500x500.jpg" alt="Kalaaster"  style="width: 100%; border-radius: 10px;">
+            <h2>Kalaaster</h2>
+            <p>Artist:Yo Yo Honey </p>
+            <a href="https://open.spotify.com/track/1sZFDDmmBVkcHOpV6AB0Nx?si=481d56f312b84fe5" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/781/Kalaastar-From-Honey-3-0-Hindi-2023-20231010140404-500x500.jpg" alt="9.45"  style="width: 100%; border-radius: 10px;">
+            <h2>9.45</h2>
+            <p>Artist:Prabh Singh, Jay Trak</p>
+            <a href="https://open.spotify.com/track/6c4Po8zyQjB4cR5XgLhcGb?si=203a718168ef42a8" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://i.scdn.co/image/ab67616d00001e02a90a3cbabaee190af2f972bf" alt="Obbessed"  style="width: 100%; border-radius: 10px;">
+            <h2>Obbessed</h2>
+            <p>Artist:Riar Saab, Abhijay Sharma</p>
+            <a href="https://open.spotify.com/track/6Z4rRhYZVQsYKmrxD40tru?si=e386ad253d6648fb" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>
+
+        <div style="background: white; color: black; padding: 15px; border-radius: 10px; text-align: center; width: 250px;">
+            <img src="https://c.saavncdn.com/704/Still-Rollin-Punjabi-2023-20230512121542-500x500.jpg" alt="Still rollin"  style="width: 100%; border-radius: 10px;">
+            <h2>Still rollin</h2>
+            <p>Artist:Shubh </p>
+            <a href="https://open.spotify.com/track/6oz1L5jcqZWYuId7nxvIan?si=b2601c1ab5f24942" target="_blank">
+                <STRONG>PLAY THIS SONG</STRONG>
+              </a>
+        </div>  
+    </div>
+
+
+        </div>
+      </div>
+
+    <!-- ✅ Footer with Social Media Links & Contact Info -->
+    <footer class="footer">
+        <div>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:contact@diversemelodies.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>📞 Phone: +91 92872 93365</p>
+        <p>&copy; 2025 Diverse Melodies. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ JavaScript for Email Validation -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            var emailInput = document.getElementById("email");
+            var emailValue = emailInput.value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(emailValue)) {
+                emailInput.classList.add("is-invalid");
+                event.preventDefault(); // Prevent form submission
+            } else {
+                emailInput.classList.remove("is-invalid");
+            }
+        });
+    </script>
+    
+    <script>
+        const toggleBtn = document.getElementById('toggleMode');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            }
+        });
+    </script>
+</body>
+</html>
